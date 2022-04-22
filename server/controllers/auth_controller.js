@@ -2,6 +2,7 @@ const userModel = require('../models/user_model')
 const leaderboardsModel = require('../models/leadboards_model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+
 const register = async (req, res) => {
     try {
         const { first_name, last_name, email, username, password, favteam } = req.body;
@@ -56,9 +57,9 @@ const login = async (req, res) => {
                 error: "All input is required"
             })
         }
-        const user = await User.findOne({ email })
-
-        if (user && (await bcrypt.compare(password, user.password))) {
+        const user = await userModel.findOne({ email })
+        const decryptedPassword = await bcrypt.compare(password, user.password)
+        if (user && (decryptedPassword)) {
             const token = jwt.sign(
                 {
                     user_id: user._id,
@@ -78,5 +79,6 @@ const login = async (req, res) => {
 }
 
 module.exports = {
-    register
+    register,
+    login
 }
