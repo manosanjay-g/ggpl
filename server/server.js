@@ -1,21 +1,24 @@
 const express = require('express')
-
-
 const app = express();
-const router = express.Router();
+
 const connectDB = require('./configs/database_config');
 const { authenticateToken } = require('./middleware/auth_middleware');
 require('dotenv').config();
 
 const authRouter = require('./routes/auth_route')
+const predictionRouter = require('./routes/prediction_route')
+
 app.use(express.json());
+
+app.use('/auth', authRouter)
+app.use('/predictions', predictionRouter)
 
 app.get('/', authenticateToken, (req, res) => {
     const u = req.user;
     res.json(u);
 })
 
-app.use('/auth', authRouter)
+
 
 const start = async () => {
     try {

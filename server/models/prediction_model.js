@@ -12,8 +12,8 @@ const predictionSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
-const predictionCollection = mongoose.model('prediction', userSchema, 'predictions');
-const currentPredictionCollection = mongoose.model('current_prediction', userSchema, 'current_predictions');
+const predictionCollection = mongoose.model('prediction', predictionSchema, 'predictions');
+const currentPredictionCollection = mongoose.model('current_prediction', predictionSchema, 'current_predictions');
 module.exports = {
     predictionCollection,
     currentPredictionCollection
