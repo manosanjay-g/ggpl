@@ -5,4 +5,4 @@ const leaderboardSchema = new mongoose.Schema({
     points: { type: Number, default: 0 }
 })
 
-module.exports = mongoose.model('leaderboard', leaderboardSchema, 'leaderboardsCollection')
+module.exports = mongoose.model('leaderboard', leaderboardSchema, 'leaderboards')

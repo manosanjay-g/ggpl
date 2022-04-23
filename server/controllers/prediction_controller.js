@@ -29,7 +29,6 @@ const getPredictions = async (req, res) => {
     }
 }
 const getCurrentPredictions = async (req, res) => {
-    console.log('predictioin');
     try {
         const current_predictions = await currentPredictionCollection.find({});
         res.status(200).json({
@@ -41,7 +40,60 @@ const getCurrentPredictions = async (req, res) => {
     }
 }
 const postPrediction = async (req, res) => {
+    try {
+        const { uid, name, batsman, bowler, pp1, pp2, score, win } = req.body;
+        if (!(uid && name && batsman && bowler)) {
+            res.status(400).json({
+                error: "Fill all the required credentials"
+            })
+        }
 
+        const prediction = await predictionCollection.create({
+            uid,
+            name,
+            batsman,
+            bowler,
+            pp1,
+            pp2,
+            score,
+            win
+        });
+        const existingCurrentPrediction = await currentPredictionCollection.findOne({ uid });
+        if (!existingCurrentPrediction) {
+            const current_prediction = await currentPredictionCollection.create({
+                uid,
+                name,
+                batsman,
+                bowler,
+                pp1,
+                pp2,
+                score,
+                win
+            })
+            return res.status(200).json({
+                current_prediction: current_prediction,
+                prediction: prediction
+            })
+        } else {
+            const current_prediction = await currentPredictionCollection.updateOne({ uid: uid }, {
+                uid,
+                name,
+                batsman,
+                bowler,
+                pp1,
+                pp2,
+                score,
+                win
+            })
+            return res.status(200).json({
+                current_prediction: current_prediction,
+                prediction: prediction
+            })
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports = {
