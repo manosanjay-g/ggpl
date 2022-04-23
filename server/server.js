@@ -7,12 +7,12 @@ require('dotenv').config();
 
 const authRouter = require('./routes/auth_route')
 const predictionRouter = require('./routes/prediction_route')
-
+const adminRouter = require('./routes/admin_route')
 app.use(express.json());
 
 app.use('/auth', authRouter)
 app.use('/predictions', predictionRouter)
-
+app.use('/admin', adminRouter);
 app.get('/', authenticateToken, (req, res) => {
     const u = req.user;
     res.json(u);
