@@ -13,7 +13,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page">Home</a>
@@ -60,21 +60,11 @@
           <div class="modal-body">
             <div class="mb-3">
               <label for="BatsmanLabel" class="form-label">Batsman</label>
-              <input
-                type="text"
-                class="form-control"
-                id="BatsmanInput"
-                placeholder="Eg:M.S Dhoni"
-              />
+              <input type="text" class="form-control" id="BatsmanInput" />
             </div>
             <div class="mb-3">
               <label for="BowlerLabel" class="form-label">Bowler</label>
-              <input
-                type="text"
-                class="form-control"
-                id="BowlerInput"
-                placeholder="Eg:Chahar"
-              />
+              <input type="text" class="form-control" id="BowlerInput" />
             </div>
 
             <div class="mb-3">
