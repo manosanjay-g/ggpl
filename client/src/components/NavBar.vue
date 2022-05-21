@@ -58,6 +58,7 @@
             ></button>
           </div>
           <div class="modal-body">
+            <h3 class="text-center">CSK VS RR</h3>
             <div class="mb-3">
               <label for="BatsmanLabel" class="form-label">Batsman</label>
               <input type="text" class="form-control" id="BatsmanInput" />
