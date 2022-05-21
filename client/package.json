@@ -8,10 +8,11 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0-beta1",
-    "pinia": "^2.0.13",
     "vue": "^3.2.33",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",

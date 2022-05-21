@@ -39,3 +39,40 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data: function () {
+    return {
+      login: { email: "", password: "" },
+      data: {},
+      err: "",
+      isLoginProcessing: false,
+      showAlert: false,
+      isLoading: false,
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      try {
+        console.log(this.login);
+        if (this.login.email == "" || this.login.password == "") {
+          alert("All inputs are required");
+        } else {
+          this.isLoading = true;
+          let response = await axios
+            .post("http://localhost:3030/auth/login", this.login)
+            .then((res) => {
+              this.data = res.data;
+              this.$router.replace("/");
+            });
+        }
+      } catch (err) {
+        this.err = err.response.data.error;
+        console.log(err.response);
+      }
+    },
+  },
+};
+</script>
